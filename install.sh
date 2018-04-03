@@ -2,12 +2,12 @@
 
 SRC_PATH=~/src/lm
 mkdir -p ~/.ssh
-mkdir -p ~/src/lm
+mkdir -p $SRC_PATH
 
-git clone https://github.com/lucamaraschi/secrets.git $SRC_PATH
+git clone https://github.com/lucamaraschi/secrets.git $SRC_PATH/secrets
 
-git clone https://github.com/lucamaraschi/dotfiles $SRC_PATH
+git clone https://github.com/lucamaraschi/dotfiles $SRC_PATH/dotfiles
 
-cp secrets/id_rsa* ~/.ssh/
+cp $SRC_PATH/secrets/id_rsa* ~/.ssh/
 
-source ~/src/lm/dotfiles/install.sh
+source $SRC_PATH/dotfiles/install.sh
