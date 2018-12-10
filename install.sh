@@ -5,20 +5,27 @@ mkdir -p ~/.ssh
 mkdir -p ~/.aws
 mkdir -p $SRC_PATH
 
-echo "Checking Xcode CLI tools"
-# Only run if the tools are not installed yet
-# To check that try to print the SDK path
-xcode-select -p &> /dev/null
-if [ $? -ne 0 ]; then
-  echo "Xcode CLI tools not found. Installing them..."
-  touch /tmp/.com.apple.dt.CommandLineTools.installondemand.in-progress;
-  PROD=$(softwareupdate -l |
-    grep "\*.*Command Line" |
-    head -n 1 | awk -F"*" '{print $2}' |
-    sed -e 's/^ *//' |
-    tr -d '\n')
-  softwareupdate -i "$PROD" -v;
+if [ "$(which git)" ]; then
+        echo "You already have git. Exiting.."
+        exit
+else
+        XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+        if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+            xcode-select --install
+        else
+            echo "You have cancelled the installation, please rerun the installer."
+            # you have forgotten to exit here
+            exit
+        fi
 fi
+
+until [ "$(which git)" ]; do
+        echo -n "."
+        sleep 1
+done
+echo ""
+
+echo 'Xcode has finished installing'
 
 sudo xcodebuild -license accept
 echo "Xcode CLI tools OK"
