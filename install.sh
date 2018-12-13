@@ -5,10 +5,7 @@ mkdir -p ~/.ssh
 mkdir -p ~/.aws
 mkdir -p $SRC_PATH
 
-if [ "$(which git)" ]; then
-        echo "You already have git. Exiting.."
-        exit
-else
+if [ ! "$(which git)" ]; then
         XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
         if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
             xcode-select --install
