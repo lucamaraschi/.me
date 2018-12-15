@@ -2,7 +2,6 @@
 
 SRC_PATH=~/src/lm
 mkdir -p ~/.ssh
-mkdir -p ~/.aws
 mkdir -p $SRC_PATH
 
 sudo -v
@@ -27,7 +26,6 @@ cp $SRC_PATH/secrets/id_rsa* ~/.ssh/
 sudo chmod 600 ~/.ssh/id_rsa
 sudo chmod 600 ~/.ssh/id_rsa.pub
 
-mkdir -p ~/.aws
 ln -s $SRC_PATH/secrets/aws ~/.aws
 
 cd $SRC_PATH/dotfiles && pwd $SRC_PATH/dotfiles
