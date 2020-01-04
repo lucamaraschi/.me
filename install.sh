@@ -11,7 +11,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 if test ! $(which brew); then
 	echo "Installing homebrew"
-	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/2.0/install)"
+	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 sudo xcodebuild -license accept
