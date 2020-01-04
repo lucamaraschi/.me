@@ -1,3 +1,3 @@
 # .me
 
-curl -o- https://raw.githubusercontent.com/lucamaraschi/.me/master/install.sh | sh
+curl -o- https://raw.githubusercontent.com/lucamaraschi/.me/2.0/install.sh | sh
