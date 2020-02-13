@@ -17,7 +17,6 @@ fi
 # check if user has git installed and propose to install if not installed
 if [ "$(which git)" ]; then
         echo "You already have git. Exiting.."
-        exit
 else
         XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
         if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
