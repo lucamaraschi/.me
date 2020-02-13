@@ -39,7 +39,7 @@ echo "Xcode CLI tools OK"
 
 git clone https://github.com/lucamaraschi/secrets.git $SRC_PATH/secrets
 
-git clone https://github.com/lucamaraschi/dotfiles $SRC_PATH/dotfiles
+git clone https://github.com/lucamaraschi/dotfiles -b 2.0 $SRC_PATH/dotfiles
 
 mkdir -p ~/.ssh
 cp $SRC_PATH/secrets/id_rsa* ~/.ssh/
