@@ -14,7 +14,27 @@ if test ! $(which brew); then
 	ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-sudo xcodebuild -license accept
+# check if user has git installed and propose to install if not installed
+if [ "$(which git)" ]; then
+        echo "You already have git. Exiting.."
+        exit
+else
+        XCODE_MESSAGE="$(osascript -e 'tell app "System Events" to display dialog "Please click install when Command Line Developer Tools appears"')"
+        if [ "$XCODE_MESSAGE" = "button returned:OK" ]; then
+            xcode-select --install
+        else
+            echo "You have cancelled the installation, please rerun the installer."
+            # you have forgotten to exit here
+            exit
+        fi
+fi
+
+until [ "$(which git)" ]; do
+        echo -n "."
+        sleep 1
+done
+echo ""
+
 echo "Xcode CLI tools OK"
 
 git clone https://github.com/lucamaraschi/secrets.git $SRC_PATH/secrets
